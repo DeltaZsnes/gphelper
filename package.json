@@ -1,0 +1,24 @@
+{
+  "name": "gphelper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node source/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeltaZsnes/gphelper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeltaZsnes/gphelper/issues"
+  },
+  "homepage": "https://github.com/DeltaZsnes/gphelper#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^2.0.0"
+  }
+}
