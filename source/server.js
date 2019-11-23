@@ -9,8 +9,14 @@ const app = express();
 const server = http.Server(app);
 
 var setupMiddleware = () => {
-  passport.serializeUser((user, done) => done(null, user));
-  passport.deserializeUser((user, done) => done(null, user));
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });
+
   passport.use(
     new GoogleOAuthStrategy({
         clientID: config.oAuthClientID,
@@ -38,21 +44,27 @@ var setupMiddleware = () => {
 };
 
 var setupEndpoint = () => {
-  app.use("/start", express.static(__dirname + "/start"))
+  app.use("/start", express.static(__dirname + "/start"));
 
   app.get(
-    "/auth/google",
+    "/auth/login",
     passport.authenticate("google", {
       scope: config.scopes,
-      failureFlash: true, // Display errors to the user.
+      failureFlash: true,
       session: true
     })
   );
 
+  app.get('/auth/logout', (req, res) => {
+    req.logout();
+    req.session.destroy();
+    res.redirect('/start');
+  });
+
   app.get(
     "/auth/google/callback",
     passport.authenticate("google", {
-      failureRedirect: "/",
+      failureRedirect: "/start",
       failureFlash: true,
       session: true
     }),
@@ -79,11 +91,7 @@ setupEndpoint();
 
 server.listen(config.port, () => {
   var baseUrl = "http://localhost:" + config.port;
-  var authUrl = baseUrl + "/auth/google";
-  var startUrl = baseUrl + "/start";
-  console.log({
-    baseUrl,
-    authUrl,
-    startUrl
-  });
+  console.log(baseUrl + "/auth/login");
+  console.log(baseUrl + "/auth/user");
+  console.log(baseUrl + "/start");
 });
