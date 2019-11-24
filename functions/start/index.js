@@ -1,11 +1,11 @@
 console.log("index.js");
 
 const loginRedirect = async () => {
-    window.location.replace("/auth/login");
+    window.location.replace("/app/auth/login");
 };
 
 const runAsync = async () => {
-    const authUserResponse = await fetch("/auth/user", {
+    const authUserResponse = await fetch("/app/auth/user", {
         "body": null,
         "method": "GET",
         "mode": "cors"
