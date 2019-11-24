@@ -46,6 +46,10 @@ const setupMiddleware = () => {
 const setupEndpoint = () => {
   app.use("/start", express.static(path.join(__dirname, "/start")));
 
+  app.get("/", (req, res) => {
+      res.redirect("app/start");
+  });
+
   app.get(
     "/auth/login",
     passport.authenticate("google", {
@@ -89,15 +93,8 @@ const setupEndpoint = () => {
 setupMiddleware();
 setupEndpoint();
 
-// exports.widgets = functions.https.onRequest(app);
-
-// const app1 = express()
-// app1.get("*", (request, response) => {
-//   response.send("Hello from Express on Firebase!")
-// })
-
-const api1 = functions.https.onRequest(app)
-
 module.exports = {
-  api1
+  "app": functions.https.onRequest(app)
 }
+
+//https://us-central1-gphelper-a21db.cloudfunctions.net/app/start/
