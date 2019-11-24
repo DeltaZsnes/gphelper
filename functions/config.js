@@ -1,11 +1,8 @@
 var config = {};
 
-config.oAuthClientID =
-  "1035749046165-ifgs23r0nc294fqapl2mbbfnqpmv3vbe.apps.googleusercontent.com";
-config.oAuthclientSecret = "4DU5kv4Aq_tCwEemRwWxJXd_";
-config.oAuthCallbackUrl = "http://127.0.0.1:8080/auth/google/callback";
-// config.port = 8888;
-config.port = 8080;
+config.oAuthClientID = "1035749046165-0kuglb2thnbrira2a2ce43g7m80ar3s8.apps.googleusercontent.com";
+config.oAuthclientSecret = "E_EedQMqugi-iWOaWEGkrsKU";
+config.oAuthCallbackUrl = "https://us-central1-gphelper-a21db.cloudfunctions.net/app/auth/callback";
 config.scopes = [
   "https://www.googleapis.com/auth/photoslibrary.readonly",
   "profile"

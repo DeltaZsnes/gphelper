@@ -47,7 +47,7 @@ const setupEndpoint = () => {
   app.use("/start", express.static(path.join(__dirname, "/start")));
 
   app.get("/", (req, res) => {
-      res.redirect("/app/start");
+      res.redirect("app/start");
   });
 
   app.get(
@@ -62,18 +62,18 @@ const setupEndpoint = () => {
   app.get('/auth/logout', (req, res) => {
     req.logout();
     req.session.destroy();
-    res.redirect('/app/start');
+    res.redirect('app/start');
   });
 
   app.get(
     "/auth/callback",
     passport.authenticate("google", {
-      failureRedirect: "/app/start",
+      failureRedirect: "app/start",
       failureFlash: true,
       session: true
     }),
     (req, res) => {
-      res.redirect("/app/start");
+      res.redirect("app/start");
     }
   );
 
