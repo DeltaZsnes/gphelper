@@ -3,6 +3,7 @@ const express = require("express");
 const passport = require("passport");
 const GoogleOAuthStrategy = require("passport-google-oauth20").Strategy;
 const session = require("express-session");
+const path = require("path");
 const config = require("./config.js");
 
 const app = express();
@@ -43,7 +44,7 @@ const setupMiddleware = () => {
 };
 
 const setupEndpoint = () => {
-  app.use("/start", express.static(__dirname + "/start"));
+  app.use("/start", express.static(path.join(__dirname, "/start")));
 
   app.get(
     "/auth/login",
@@ -90,12 +91,12 @@ setupEndpoint();
 
 // exports.widgets = functions.https.onRequest(app);
 
-const app1 = express()
-app1.get("*", (request, response) => {
-  response.send("Hello from Express on Firebase!")
-})
+// const app1 = express()
+// app1.get("*", (request, response) => {
+//   response.send("Hello from Express on Firebase!")
+// })
 
-const api1 = functions.https.onRequest(app1)
+const api1 = functions.https.onRequest(app)
 
 module.exports = {
   api1
