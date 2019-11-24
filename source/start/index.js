@@ -31,6 +31,13 @@ const captureVideo = async () => {
     video.srcObject = stream;
 };
 
+const captureImage = async () => {
+    const fileInput = document.getElementById('captureImage1');
+    fileInput.addEventListener('change', (e) => {
+        console.log(e);
+    });
+};
+
 runAsync().catch(e => {
     console.error(e);
 });
